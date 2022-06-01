@@ -7,11 +7,16 @@
     if (!is_dir($csvDirectory)) {
         mkdir($csvDirectory, 0777, TRUE);
     }
+
+    $csvURL = "";
+
     //GET LAST FEED ID
     $query = "SELECT * FROM feed WHERE `status`= 'active' ORDER BY id";
     $result = $dbc->query($query) or die ($dbc->error . " (".$dbc->errno.")");
     if ($result->num_rows > 0) {
         while($row = mysqli_fetch_assoc($result)){
+            
+            $csvURL = $row['url'];
 
             //DOWNLOAD CSV FILE
             $source = file_get_contents($csvURL);
