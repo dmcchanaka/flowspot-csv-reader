@@ -9,6 +9,7 @@
     }
 
     $csvURL = "";
+    $csvID = NULL;
 
     //GET LAST FEED ID
     $query = "SELECT * FROM feed WHERE `status`= 'active' ORDER BY id";
@@ -17,6 +18,7 @@
         while($row = mysqli_fetch_assoc($result)){
             
             $csvURL = $row['url'];
+            $csvID = $row['id'];
 
             //DOWNLOAD CSV FILE
             $source = file_get_contents($csvURL);
